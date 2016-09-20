@@ -45,6 +45,8 @@ app.use(bodyParser());
 app.use(methodOverride());
 app.use(cookieParser('Some Secret!!!'));
 app.use(expressSession({store: new rs({host: 'am.adambradleyconsulting.com', port: 6379}), secret: 'Some Secret!!!'}));
+app.use('/static', express.static(__dirname + '/public'));
+
 // app.use(app.router);
 
 //redirect to login
@@ -74,7 +76,8 @@ var validateUser = function (req, next) {
 };
 
 var afterLogin = function (req, res, next) {
-    res.redirect(req.param('return_url')||'/user');
+    console.log(req.param('returl_url'));
+    res.redirect(req.param('return_url')||'/user/registerHello');
 };
 
 var loginError = function (err, req, res, next) {
@@ -83,7 +86,6 @@ var loginError = function (err, req, res, next) {
 };
 
 app.post('/my/login', oidc.login(validateUser), afterLogin, loginError);
-
 
 app.all('/logout', oidc.removetokens(), function(req, res, next) {
     req.session.destroy();
@@ -179,6 +181,102 @@ app.post('/user/create', oidc.use({policies: {loggedIn: false}, models: 'user'})
 
 app.get('/user', oidc.check(), function(req, res, next){
   res.send('<h1>User Page</h1><div><a href="/client">See registered clients of user</a></div>');
+});
+
+app.get('/user/registerHello', oidc.check(), function(req, res, next){
+  var head = '<html lang="EN-US" dir="ltr"><head>\
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">\
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">\
+<title>Sign in Successful</title>\
+<meta name="LocLC" content="1033"><link href="./images/favicon.ico" rel="shortcut icon">\
+<link title="R3CSS" href="/static/css/R3WinLive1033.css" rel="stylesheet" type="text/css">\
+<style type="text/css"></style>';
+
+  var inputs = '<input type="text" name="email" placeholder="Enter Email"/><input type="password" name="password" placeholder="Enter Password"/>';
+  var error = req.session.error?'<div>'+req.session.error+'</div>':'';
+  var body = '<body><h1>Login</h1><form method="POST">'+inputs+'<input type="submit"/></form>'+error;
+  var body1 = '\
+<meta name="GENERATOR" content="MSHTML 11.00.10537.1000"></head>\
+<body uitheme="Web">\
+<div style="height: 40px;"></div>\
+<div class="centerParent" id="shellTD" style="width: 100%;">\
+    <div class="center" id="shellTBL" style="width: 935px;">\
+        <div class="centerParent">\
+            <div class="center" id="mainTD" style="width: 895px;">\
+                <div class="floatLeft" id="brandModeTD" style="width: 475px;">\
+                    <div id="productTD" style="width: 475px;">\
+                        <img width="480" height="360" id="i0278" src="/static/images/hello.png"/></a>\
+                    </div>\
+                </div>\
+                <div class="floatLeft" id="signInTD" style="width: 420px; position: relative;">\
+                    <div style="height: 40px;"></div>\
+                    <div class="signInHeader" id="i0272">\
+                        <h1 class="loginhead">Windows Hello</h1>\
+                    </div>\
+                    <div style="height: 30px;"></div>\
+                    <div class="floatLeft" style="width: 100px; height: 370px;"></div>\
+                    <div class="floatLeft" style="width: 320px;">\
+                        <div id="rightTD">\
+                            <div class="section" id="idDiv_FSI_HeaderInfo">\
+                                <p>\
+                                    Good news, your device supports Windows Hello and you can use it to authenticate with this demo site. With Windows Hello, you can log into this site on this PC without a password.\
+                                </p>\
+                                <p>\
+                                    Do you want to enable Windows Hello for your next sign in?\
+                                </p>\
+                                </div>\
+                            <div class="section">\
+                                <div id="idTd_Tile_Error" aria-live="assertive" aria-relevant="text" style="display: none;" aria-atomic="true">\
+                                    <div class="errorDiv" id="idTd_Tile_ErrorMsg_Login"></div>\
+                                </div>\
+                                <div id="idTd_HIP_Error_Password" aria-live="assertive" aria-relevant="text" style="display: none;" aria-atomic="true">\
+                                    <div class="errorDiv" id="idTd_PWD_ErrorMsg_Password"></div>\
+                                </div>\
+                                <div class="row textbox" id="idDiv_PWD_SUPasswordTb">\
+                                    <div></div>\
+                                </div>\
+                            </div>\
+                            <div class="section">\
+                                <button class="default" id="idSIButton9" onclick="window.location=\'/user\';">Maybe later</button>\
+                                <button class="default" id="idSIButton9" onclick="makeCredential();">Start using Windows Hello!</button>\
+                            </div>\
+                        </div>\
+                        <div style="visibility: hidden;"></div>\
+                    </div>\
+                    <div class=" signUpFloat"></div>\
+                </div>\
+                <div class="section">\
+                    <div id="SetupWindowsHello" style="display: none;">\
+                        <h1>You need to setup Windows Hello</h1>\
+                        <p>Select the <b>Start</b> button, then select <b>Settings > Accounts > Sign-in</b> options to set up Windows Hello. Under <b>Windows Hello</b> , you’ll see options for face, fingerprint, or iris if your PC has a fingerprint reader or a camera that supports it. Once you’re\ set up, you’ll be able to sign in with a quick swipe or glance. </p>\
+                        <button class="default" id="idSIButton9" onclick="showSetupWindowsHelloDialog(false);">Okay</button>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>\
+        <div style="height: 50px; clear: both;"></div>\
+    </div>\
+</div>';
+  var script = '\
+<script src="/static/js/webauthn.js"></script>\
+<script src="/static/js/demo.js"></script>\
+<script type="text/javascript">\
+        function showSetupWindowsHelloDialog(show) {\
+            if(show) {\
+                ocument.getElementById("SetupWindowsHello").style.display = "block";\
+                document.getElementById("brandModeTD").style.display = "none";\
+                document.getElementById("signInTD").style.display = "none";\
+            } \
+            else {\
+                document.getElementById("SetupWindowsHello").style.display = "none";\
+                document.getElementById("brandModeTD").style.display = "block";\
+                document.getElementById("signInTD").style.display = "block";\
+            }\
+        }\
+</script>\
+';
+
+  res.send('<html>'+head+body1+script+'</html>');
 });
 
 //User Info Endpoint
