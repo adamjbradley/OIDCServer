@@ -2,15 +2,15 @@
   "data": {
     "user": [
       {
+        "name": "Adam Bradley",
         "given_name": "Adam",
         "middle_name": "",
         "family_name": "Bradley",
         "email": "adam_j_bradley@yahoo.com",
         "password": "56e39e60cb9b81108e441ede3ff02237fd90de552aadabcf3526332313dbdccd",
-        "name": "Adam Bradley",
+        "id": 1,
         "createdAt": "2016-09-21T00:37:00.429Z",
-        "updatedAt": "2016-09-21T00:37:00.429Z",
-        "id": 1
+        "updatedAt": "2016-09-21T00:37:00.429Z"
       }
     ],
     "client": [],
