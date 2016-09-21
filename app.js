@@ -10,7 +10,7 @@ var crypto = require('crypto'),
     querystring = require('querystring'),
     //redis = require('redis'),
     //rs = require('connect-redis')(expressSession),
-    filesession = require('session-file-store')(expressSession),
+    fileStore = require('session-file-store')(expressSession),
     //client  = redis.createClient();
     
     extend = require('extend'),
@@ -49,11 +49,10 @@ app.use(methodOverride());
 app.use(cookieParser('Some Secret!!!'));
 
 app.use(expressSession({
-    store: new filesession({
+    store: new fileStore({
         path: 'D:/home/sessions',
-        useAsync: true,
-        reapInterval: 5000,
-        maxAge: 10000
+        resave: true,
+        saveUninitialized: true
     }),
     secret: 'Some Secret!!!'
 }));
