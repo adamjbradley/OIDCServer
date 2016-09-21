@@ -27,7 +27,7 @@ var app = express();
 
 var sailsDisk = require('sails-disk');
 sailsDisk.config = {
-    filePath: 'd:/home/OIDCServer',
+    filePath: './',
     schema: false
 };
 
