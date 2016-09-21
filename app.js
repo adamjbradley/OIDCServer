@@ -9,8 +9,8 @@ var crypto = require('crypto'),
     path = require('path'),
     querystring = require('querystring'),
     //redis = require('redis'),
-    //rs = require('connect-redis')(expressSession),
-    fileStore = require('session-file-store')(expressSession),
+    redisStore = require('connect-redis')(expressSession),
+    //fileStore = require('session-file-store')(expressSession),
     //client  = redis.createClient();
     
     extend = require('extend'),
@@ -25,7 +25,8 @@ var crypto = require('crypto'),
 
 var app = express();
 
-var sailsDisk = require('sails-disk');
+//var sailsDisk = require('sails-disk');
+var sailsRedis = require('sails-redis');
 
 var options = {
   login_url: '/my/login',
@@ -38,12 +39,16 @@ var options = {
   //models:{user:{attributes:{sub:function(){return this.email;}}}},
   app: app,
   adapters: {
-      disk: sailsDisk
+      //disk: sailsDisk
+      redis : sailsRedis,
   },
   connections: {
     def: {
-        adapter: 'disk',
-        filePath: 'c:/home/persistence/'
+        //adapter: 'disk',
+        //filePath: 'c:/home/persistence/'
+        adapter: 'redis',
+        port: 6379,
+        host: 'am.adambradleyconsulting.com'
     }},
 };
 
@@ -59,9 +64,10 @@ app.use(methodOverride());
 app.use(cookieParser('Some Secret!!!'));
 
 app.use(expressSession({
-    store: new fileStore({
-        path: 'c:/home/sessions'
-    }),
+    //store: new fileStore({
+    //    path: 'c:/home/sessions'
+    //}),
+    store: new redisStore({host: 'am.adambradleyconsulting.com', port: 6379}),
     secret: 'Some Secret!!!'
 }));
 app.use('/static', express.static(__dirname + '/public'));

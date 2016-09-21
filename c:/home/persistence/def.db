@@ -1,0 +1,369 @@
+{
+  "data": {
+    "user": [
+      {
+        "name": "Adam Bradley",
+        "given_name": "Adam",
+        "middle_name": "",
+        "family_name": "Bradley",
+        "email": "adam_j_bradley@yahoo.com",
+        "password": "56e39e60cb9b81108e441ede3ff02237fd90de552aadabcf3526332313dbdccd",
+        "id": 1,
+        "createdAt": "2016-09-21T09:53:58.631Z",
+        "updatedAt": "2016-09-21T09:53:58.631Z"
+      }
+    ],
+    "client": [
+      {
+        "key": "1f44fc237ebbaa889febf32a49500040",
+        "secret": "6ed27edf29f43d717c195b72a9ad6b17",
+        "name": "Postman",
+        "user": 1,
+        "redirect_uris": [
+          "https://www.getpostman.com/oauth2/callback"
+        ],
+        "credentialsFlow": false,
+        "id": 1,
+        "createdAt": "2016-09-21T09:54:29.207Z",
+        "updatedAt": "2016-09-21T09:54:29.207Z"
+      },
+      {
+        "key": "7c6afda7b78cc9b7424785091eb71932",
+        "secret": "51a2fdefd653c84ac319ffda5907ace7",
+        "name": "asdf",
+        "user": 1,
+        "redirect_uris": [
+          "asdf"
+        ],
+        "credentialsFlow": false,
+        "id": 2,
+        "createdAt": "2016-09-21T10:05:14.509Z",
+        "updatedAt": "2016-09-21T10:05:14.509Z"
+      }
+    ],
+    "consent": [
+      {
+        "user": 1,
+        "client": 1,
+        "scopes": [
+          "openid",
+          "foo"
+        ],
+        "createdAt": "2016-09-21T09:55:01.271Z",
+        "updatedAt": "2016-09-21T09:55:01.271Z",
+        "id": 1
+      }
+    ],
+    "auth": [
+      {
+        "client": 1,
+        "scope": [
+          "openid",
+          "foo"
+        ],
+        "user": 1,
+        "sub": "1",
+        "code": "ab70632841956dbcbae566e2afe426bb",
+        "redirectUri": "https://www.getpostman.com/oauth2/callback",
+        "responseType": "code",
+        "status": "used",
+        "createdAt": "2016-09-21T09:55:01.297Z",
+        "updatedAt": "2016-09-21T09:55:03.221Z",
+        "id": 1
+      }
+    ],
+    "access": [
+      {
+        "token": "82cab742f7c9055b4d5db60997b000bc",
+        "type": "Bearer",
+        "expiresIn": 3600,
+        "user": 1,
+        "client": 1,
+        "idToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjMwMDEiLCJzdWIiOiIxIiwiYXVkIjoiMWY0NGZjMjM3ZWJiYWE4ODlmZWJmMzJhNDk1MDAwNDAiLCJleHAiOjE0NzQ0NTUzMDMsImlhdCI6MTQ3NDQ1MTcwM30.Re14fGciS5dBpIg0ujhxiqYP9LDSxBYYw2RauIFaLIY",
+        "scope": [
+          "openid",
+          "foo"
+        ],
+        "auth": 1,
+        "createdAt": "2016-09-21T09:55:03.207Z",
+        "updatedAt": "2016-09-21T09:55:03.207Z",
+        "id": 1
+      }
+    ],
+    "refresh": [
+      {
+        "token": "d6268b66751b77505c9b86150accdb82",
+        "scope": [
+          "openid",
+          "foo"
+        ],
+        "status": "created",
+        "auth": 1,
+        "createdAt": "2016-09-21T09:55:03.168Z",
+        "updatedAt": "2016-09-21T09:55:03.168Z",
+        "id": 1
+      }
+    ]
+  },
+  "schema": {
+    "user": {
+      "name": {
+        "type": "string",
+        "unique": true
+      },
+      "given_name": {
+        "type": "string"
+      },
+      "middle_name": {
+        "type": "string"
+      },
+      "family_name": {
+        "type": "string"
+      },
+      "profile": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "unique": true
+      },
+      "password": {
+        "type": "string"
+      },
+      "picture": {
+        "type": "binary"
+      },
+      "birthdate": {
+        "type": "date"
+      },
+      "gender": {
+        "type": "string"
+      },
+      "phone_number": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "client": {
+      "key": {
+        "type": "string",
+        "unique": true
+      },
+      "secret": {
+        "type": "string",
+        "unique": true
+      },
+      "name": {
+        "type": "string"
+      },
+      "image": {
+        "type": "binary"
+      },
+      "user": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "user"
+      },
+      "redirect_uris": {
+        "type": "array"
+      },
+      "credentialsFlow": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "consent": {
+      "user": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "user"
+      },
+      "client": {
+        "type": "integer",
+        "model": "client",
+        "foreignKey": true,
+        "alias": "client"
+      },
+      "scopes": {
+        "type": "array"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "auth": {
+      "client": {
+        "type": "integer",
+        "model": "client",
+        "foreignKey": true,
+        "alias": "client"
+      },
+      "scope": {
+        "type": "array"
+      },
+      "user": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "user"
+      },
+      "sub": {
+        "type": "string"
+      },
+      "code": {
+        "type": "string"
+      },
+      "redirectUri": {
+        "type": "string"
+      },
+      "responseType": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "access": {
+      "token": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string"
+      },
+      "idToken": {
+        "type": "string"
+      },
+      "expiresIn": {
+        "type": "integer"
+      },
+      "scope": {
+        "type": "array"
+      },
+      "client": {
+        "type": "integer",
+        "model": "client",
+        "foreignKey": true,
+        "alias": "client"
+      },
+      "user": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "user"
+      },
+      "auth": {
+        "type": "integer",
+        "model": "auth",
+        "foreignKey": true,
+        "alias": "auth"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "refresh": {
+      "token": {
+        "type": "string"
+      },
+      "scope": {
+        "type": "array"
+      },
+      "auth": {
+        "type": "integer",
+        "model": "auth",
+        "foreignKey": true,
+        "alias": "auth"
+      },
+      "status": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    }
+  },
+  "counters": {
+    "user": {
+      "id": 1
+    },
+    "client": {
+      "id": 2
+    },
+    "consent": {
+      "id": 1
+    },
+    "auth": {
+      "id": 1
+    },
+    "access": {
+      "id": 1
+    },
+    "refresh": {
+      "id": 1
+    }
+  }
+}
