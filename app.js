@@ -47,6 +47,7 @@ var options = {
     }},
 };
 
+
 //var oidc = require('../index').oidc(options);
 var oidc = require('./openid-connect').oidc(options);
 
