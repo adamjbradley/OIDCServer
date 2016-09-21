@@ -10,7 +10,7 @@ var crypto = require('crypto'),
     querystring = require('querystring'),
     //redis = require('redis'),
     //rs = require('connect-redis')(expressSession),
-    rs = require('session-file-store')(expressSession),
+    filesession = require('session-file-store')(expressSession),
     //client  = redis.createClient();
     
     extend = require('extend'),
@@ -47,7 +47,13 @@ app.use(logger('dev'));
 app.use(bodyParser());
 app.use(methodOverride());
 app.use(cookieParser('Some Secret!!!'));
-app.use(expressSession({store: new rs({host: 'am.adambradleyconsulting.com', port: 6379}), secret: 'Some Secret!!!'}));
+
+app.use(expressSession({
+    store: new filesession({
+        path: 'C:/sessions'
+    }),
+    secret: 'Some Secret!!!'
+}));
 app.use('/static', express.static(__dirname + '/public'));
 
 // app.use(app.router);

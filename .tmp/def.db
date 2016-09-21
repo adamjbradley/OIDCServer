@@ -13,7 +13,23 @@
         "updatedAt": "2016-09-21T00:37:00.429Z"
       }
     ],
-    "client": [],
+    "client": [
+      {
+        "key": "d0c197a25115b533bee003f4c6a39295",
+        "secret": "f216e0eb590d091ec757f6f43ced43cd",
+        "name": "Postman",
+        "user": 1,
+        "redirect_uris": [
+          "Supports",
+          "entitlement",
+          "model"
+        ],
+        "credentialsFlow": false,
+        "id": 1,
+        "createdAt": "2016-09-21T04:02:40.165Z",
+        "updatedAt": "2016-09-21T04:02:40.165Z"
+      }
+    ],
     "consent": [],
     "auth": [],
     "access": [],
@@ -264,7 +280,9 @@
     "user": {
       "id": 1
     },
-    "client": {},
+    "client": {
+      "id": 1
+    },
     "consent": {},
     "auth": {},
     "access": {},

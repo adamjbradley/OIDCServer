@@ -3,3 +3,4 @@ azure.err
 backup
 *.publishsettings
 .gitignore
+sessions
