@@ -27,7 +27,7 @@ var app = express();
 
 var sailsDisk = require('sails-disk');
 sailsDisk.config = {
-    filePath: 'd:/home/data',
+    filePath: 'd:/home/OIDCServer',
     schema: false
 };
 
@@ -42,7 +42,7 @@ var options = {
   //models:{user:{attributes:{sub:function(){return this.email;}}}},
   app: app,
   adapters: {
-      disk: require('sails-disk')
+      disk: sailsDisk
   }
 };
 
