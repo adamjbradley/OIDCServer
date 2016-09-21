@@ -50,7 +50,10 @@ app.use(cookieParser('Some Secret!!!'));
 
 app.use(expressSession({
     store: new filesession({
-        path: 'd:/home/sessions'
+        path: 'D:/home/sessions',
+        useAsync: true,
+        reapInterval: 5000,
+        maxAge: 10000
     }),
     secret: 'Some Secret!!!'
 }));
