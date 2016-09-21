@@ -35,7 +35,9 @@ var options = {
   models:{user:{attributes:{sub:function(){return this.email;}}}},
   app: app
 };
-var oidc = require('../index').oidc(options);
+
+//var oidc = require('../index').oidc(options);
+var oidc = require('openid-connect').oidc(options);
 
 
 // all environments
