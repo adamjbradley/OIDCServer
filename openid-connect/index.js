@@ -23,7 +23,6 @@ util = require("util"),
 base64url = require('base64url'),
 cleanObj = require('clean-obj');
 
-
 var defaults = {
         login_url: '/login',
         consent_url: '/consent',
