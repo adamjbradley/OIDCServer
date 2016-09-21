@@ -25,6 +25,12 @@ var crypto = require('crypto'),
 
 var app = express();
 
+var sailsDisk = require('sails-disk');
+sailsDisk.config = {
+    filePath: 'd:/home/data',
+    schema: false
+};
+
 var options = {
   login_url: '/my/login',
   consent_url: '/user/consent',
@@ -34,7 +40,10 @@ var options = {
   },
   //when this line is enabled, user email appears in tokens sub field. By default, id is used as sub.
   //models:{user:{attributes:{sub:function(){return this.email;}}}},
-  app: app
+  app: app,
+  adapters: {
+      disk: require('sails-disk')
+  }
 };
 
 //var oidc = require('../index').oidc(options);
@@ -58,7 +67,7 @@ app.use(expressSession({
 }));
 app.use('/static', express.static(__dirname + '/public'));
 
-// app.use(app.router);
+//app.use(app.router);
 
 //redirect to login
 app.get('/', function(req, res) {
