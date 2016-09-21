@@ -11,7 +11,8 @@ querystring = require('querystring'),
 //serializer = require('serializer'),
 //hashlib = require('hashlib2'),
 modelling = require('modelling'),
-sailsRedis = require('sails-redis'),
+//sailsRedis = require('sails-redis'),
+sailsDisk = require('sails-disk'),
 crypto = require('crypto'),
 _ = require('lodash'),
 extend = require('extend'),
@@ -46,11 +47,11 @@ var defaults = {
             },
         },
         adapters: {
-            redis: sailsRedis
+            disk: sailsDisk
         },
         connections: {
             def: {
-                adapter: 'redis'
+                adapter: 'disk'
             }
         },
         models: {

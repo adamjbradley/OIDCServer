@@ -9,7 +9,8 @@ var crypto = require('crypto'),
     path = require('path'),
     querystring = require('querystring'),
     //redis = require('redis'),
-    rs = require('connect-redis')(expressSession),
+    //rs = require('connect-redis')(expressSession),
+    rs = require('session-file-store')(expressSession),
     //client  = redis.createClient();
 
     extend = require('extend'),
@@ -37,7 +38,7 @@ var options = {
 };
 
 //var oidc = require('../index').oidc(options);
-var oidc = require('openid-connect').oidc(options);
+var oidc = require('./openid-connect').oidc(options);
 
 
 // all environments
