@@ -49,7 +49,6 @@ var options = {
 //var oidc = require('../index').oidc(options);
 var oidc = require('./openid-connect').oidc(options);
 
-
 // all environments
 app.set('port', process.env.PORT || 3001);
 app.use(logger('dev'));
@@ -59,9 +58,7 @@ app.use(cookieParser('Some Secret!!!'));
 
 app.use(expressSession({
     store: new fileStore({
-        path: 'd:/home/sessions',
-        resave: true,
-        saveUninitialized: true
+        path: 'd:/home/sessions'
     }),
     secret: 'Some Secret!!!'
 }));
