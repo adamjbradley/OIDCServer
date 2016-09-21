@@ -3,17 +3,17 @@
   "version": "0.0.3",
   "private": true,
   "scripts": {
-    "start": "node openid-connect-example.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
-    "connect-redis": "^2.5.1",
     "cookie-parser": "^1.4.0",
     "errorhandler": "^1.4.2",
     "express": "^4.14.0",
     "express-session": "^1.11.3",
     "extend": "^3.0.0",
     "method-override": "^2.3.5",
+    "modelling": "0.0.3",
     "morgan": "^1.6.1",
     "session-file-store": "^0.2.1"
   }
