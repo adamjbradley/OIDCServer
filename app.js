@@ -26,10 +26,6 @@ var crypto = require('crypto'),
 var app = express();
 
 var sailsDisk = require('sails-disk');
-sailsDisk.config = {
-    filePath: './',
-    schema: false
-};
 
 var options = {
   login_url: '/my/login',
@@ -43,7 +39,12 @@ var options = {
   app: app,
   adapters: {
       disk: sailsDisk
-  }
+  },
+  connections: {
+    def: {
+        adapter: 'disk',
+        filePath: 'c:/home/persistence/'
+    }},
 };
 
 //var oidc = require('../index').oidc(options);
@@ -58,7 +59,7 @@ app.use(cookieParser('Some Secret!!!'));
 
 app.use(expressSession({
     store: new fileStore({
-        path: 'd:/home/sessions'
+        path: 'c:/home/sessions'
     }),
     secret: 'Some Secret!!!'
 }));
