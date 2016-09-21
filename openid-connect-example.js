@@ -12,6 +12,7 @@ var crypto = require('crypto'),
     //rs = require('connect-redis')(expressSession),
     rs = require('session-file-store')(expressSession),
     //client  = redis.createClient();
+    
 
     extend = require('extend'),
     test = {
